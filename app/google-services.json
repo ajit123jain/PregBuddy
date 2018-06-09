@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "859278848593",
+    "firebase_url": "https://pregbuddy-a5d8a.firebaseio.com",
+    "project_id": "pregbuddy-a5d8a",
+    "storage_bucket": "pregbuddy-a5d8a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:859278848593:android:1e46c3cc64279a10",
+        "android_client_info": {
+          "package_name": "com.ajit123jain.pregbuddy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "859278848593-ndc1q1i6anqsf5ml5ethc290hst0eikm.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "859278848593-ndc1q1i6anqsf5ml5ethc290hst0eikm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBVLGGvxVo9GamiP2wZnsULVtffTWVvSrY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
