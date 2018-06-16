@@ -1,4 +1,4 @@
-package com.ajit123jain.pregbuddy;
+package com.ajit123jain.pregbuddy.network;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -11,7 +11,8 @@ import android.os.Build;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
-import com.firebase.jobdispatcher.Constraint;
+import com.ajit123jain.pregbuddy.R;
+import com.ajit123jain.pregbuddy.activity.MainActivity;
 import com.firebase.jobdispatcher.FirebaseJobDispatcher;
 import com.firebase.jobdispatcher.GooglePlayDriver;
 import com.firebase.jobdispatcher.Job;

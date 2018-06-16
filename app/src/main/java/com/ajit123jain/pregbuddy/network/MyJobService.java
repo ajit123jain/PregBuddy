@@ -1,4 +1,4 @@
-package com.ajit123jain.pregbuddy;
+package com.ajit123jain.pregbuddy.network;
 
 import android.util.Log;
 
