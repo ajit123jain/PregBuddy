@@ -14,6 +14,9 @@ import com.ajit123jain.pregbuddy.network.ApiClient;
 import com.ajit123jain.pregbuddy.network.ApiInterface;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import com.pusher.pushnotifications.api.RegisterResponse;
+
+import java.util.HashMap;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -70,14 +73,14 @@ public class RegisterationActivity extends AppCompatActivity {
         ApiInterface apiService =
                 ApiClient.getClient().create(ApiInterface.class);
         apiService.register(email.getText().toString().trim(),
-                password.getText().toString().trim()).enqueue(new Callback<JsonObject>() {
+                password.getText().toString().trim(),getResources().getString(R.string.apikey)).enqueue(new Callback<RegisterResponse>() {
             @Override
-            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+            public void onResponse(Call<RegisterResponse> call, Response<RegisterResponse> response) {
                 Log.d("Response",new Gson().toJson(response.body()));
             }
 
             @Override
-            public void onFailure(Call<JsonObject> call, Throwable t) {
+            public void onFailure(Call<RegisterResponse> call, Throwable t) {
 
             }
         });

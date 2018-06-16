@@ -1,6 +1,8 @@
 package com.ajit123jain.pregbuddy.network;
 
+import com.ajit123jain.pregbuddy.model.LoginResponse;
 import com.google.gson.JsonObject;
+import com.pusher.pushnotifications.api.RegisterResponse;
 
 import java.util.Map;
 
@@ -14,14 +16,14 @@ import retrofit2.http.QueryMap;
 public interface ApiInterface {
     @FormUrlEncoded    // annotation that used with POST type request
     @POST("register/json") // specify the sub url for our base url
-    Call<JsonObject> login(
+    Call<RegisterResponse> register(
             @Field("email") String user_email,
             @Field("password") String user_pass,
             @Field("apikey") String apikey);
 
     // annotation that used with POST type request
     @GET("login/json") // specify the sub url for our base url
-    Call<JsonObject> register(@QueryMap Map<String,String> params);
+    Call<LoginResponse> login(@QueryMap Map<String,String> params);
 
 }
 

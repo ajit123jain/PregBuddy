@@ -3,6 +3,7 @@ package com.ajit123jain.pregbuddy.activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -10,7 +11,17 @@ import android.widget.Toast;
 
 import com.ajit123jain.pregbuddy.AlertDialogManager;
 import com.ajit123jain.pregbuddy.R;
+import com.ajit123jain.pregbuddy.model.LoginResponse;
+import com.ajit123jain.pregbuddy.network.ApiClient;
+import com.ajit123jain.pregbuddy.network.ApiInterface;
 import com.ajit123jain.pregbuddy.utils.SharedPreferenceHelper;
+import com.google.gson.Gson;
+
+import java.util.HashMap;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
     // Email, password edittext
@@ -82,5 +93,23 @@ public class LoginActivity extends AppCompatActivity {
 
             }
         });
+
+        ApiInterface apiService =
+                ApiClient.getClient().create(ApiInterface.class);
+        HashMap<String,String> params = new HashMap<>();
+        params.put("username",txtUsername.getText().toString().trim());
+        params.put("password",txtPassword.getText().toString().trim());
+        apiService.login(params).enqueue(new Callback<LoginResponse>() {
+            @Override
+            public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<LoginResponse> call, Throwable t) {
+
+            }
+        });
+
     }
 }
