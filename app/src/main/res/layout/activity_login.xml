@@ -10,7 +10,7 @@
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Username (Enter 'test')"
+        android:text="Username"
         android:singleLine="true"
         android:layout_marginBottom="5dip"/>
 
@@ -24,7 +24,7 @@
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Password (Enter 'test')"
+        android:text="Password"
         android:layout_marginBottom="5dip"/>
 
     <!-- Password input text -->
@@ -32,7 +32,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dip"
-        android:password="true"
+        android:inputType="textPassword"
         android:singleLine="true"/>
 
     <!-- LoginActivity button -->
@@ -40,4 +40,8 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="Login"/>
+    <Button android:id="@+id/btnRegister"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="New User"/>
 </LinearLayout>

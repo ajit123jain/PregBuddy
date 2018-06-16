@@ -3,7 +3,7 @@ package com.ajit123jain.pregbuddy.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class ResgisterResponse {
+public class RegisterResponse {
     @SerializedName("totalcount")
     @Expose
     private Object totalcount;

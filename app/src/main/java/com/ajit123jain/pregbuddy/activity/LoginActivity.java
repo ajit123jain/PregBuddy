@@ -24,92 +24,73 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
-    // Email, password edittext
     EditText txtUsername, txtPassword;
-
-    // login button
-    Button btnLogin;
-
-    // Alert Dialog Manager
+    Button btnLogin,btnRegister;
     AlertDialogManager alert = new AlertDialogManager();
-
-    // Session Manager Class
     SharedPreferenceHelper session;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
-        // Session Manager
         session = new SharedPreferenceHelper(getApplicationContext());
-
-        // Email, Password input text
         txtUsername = (EditText) findViewById(R.id.txtUsername);
         txtPassword = (EditText) findViewById(R.id.txtPassword);
-
-        Toast.makeText(getApplicationContext(), "User LoginActivity Status: " + session.isLoggedIn(), Toast.LENGTH_LONG).show();
-
-
-        // LoginActivity button
         btnLogin = (Button) findViewById(R.id.btnLogin);
-
-
+        btnRegister = (Button) findViewById(R.id.btnRegister);
+        Toast.makeText(getApplicationContext(), "User LoginActivity Status: " + session.isLoggedIn(), Toast.LENGTH_LONG).show();
         // LoginActivity button click event
         btnLogin.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View arg0) {
-                // Get username, password from EditText
                 String username = txtUsername.getText().toString();
                 String password = txtPassword.getText().toString();
-
                 // Check if username, password is filled
-                if(username.trim().length() > 0 && password.trim().length() > 0){
-                    // For testing puspose username, password is checked with sample data
-                    // username = test
-                    // password = test
-                    if(username.equals("test") && password.equals("test")){
-
-                        // Creating user login session
-                        // For testing i am stroing name, email as follow
-                        // Use user real data
-                        session.createLoginSession("Android Hive", "anroidhive@gmail.com");
-
-                        // Staring MainActivity
-                        Intent i = new Intent(getApplicationContext(), MainActivity.class);
-                        startActivity(i);
-                        finish();
-
-                    }else{
-                        // username / password doesn't match
-                        alert.showAlertDialog(LoginActivity.this, "LoginActivity failed..", "Username/Password is incorrect", false);
-                    }
-                }else{
-                    // user didn't entered username or password
-                    // Show alert asking him to enter the details
-                    alert.showAlertDialog(LoginActivity.this, "LoginActivity failed..", "Please enter username and password", false);
+                if (username.trim().length() > 0 && password.trim().length() > 0) {
+                    login(username.trim(), password.trim());
+                } else {
+                    Toast.makeText(getApplicationContext(),"Please write Username and password",Toast.LENGTH_LONG).show();
                 }
-
             }
         });
-
+        btnRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(),RegisterationActivity.class));
+                finish();
+            }
+        });
+    }
+    //login user and sed to the main Activity
+    private void login(final String username, String password) {
         ApiInterface apiService =
                 ApiClient.getClient().create(ApiInterface.class);
-        HashMap<String,String> params = new HashMap<>();
-        params.put("username",txtUsername.getText().toString().trim());
-        params.put("password",txtPassword.getText().toString().trim());
+        HashMap<String, String> params = new HashMap<>();
+        params.put("username", username);
+        params.put("password", password);
+        Log.d("Username:"+username,"Password:"+password);
+        params.put("apikey",getResources().getString(R.string.apikey));
         apiService.login(params).enqueue(new Callback<LoginResponse>() {
             @Override
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
-
+                 if (response.body().getApimessage().equals("OK")){
+                     session.createLoginSession(username,username);
+                     Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                     finish();
+                 }
+                 else {
+                    Toast.makeText(getApplicationContext(),response.body().getApimessage(),Toast.LENGTH_LONG).show();
+                 }
             }
 
             @Override
             public void onFailure(Call<LoginResponse> call, Throwable t) {
+                Log.e("Result",t.getMessage());
+                Log.e("Result",t.toString());
+                Toast.makeText(getApplicationContext(),"please connect to the internet",Toast.LENGTH_LONG).show();
 
             }
         });
-
     }
+
 }
