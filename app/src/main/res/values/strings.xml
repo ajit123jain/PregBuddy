@@ -17,4 +17,8 @@
     <string name="default_notification_channel_name" translatable="true">News</string>
     <string name="msg_subscribe_failed">Failed to subscribe to news topic</string>
     <string name="apikey">4834364d322a642e3c2f5a7c20</string>
+    
+    <string name="FCM_PREF">com.ajit123jain.pregbuddy.fcm_pref</string>
+    <string name="FCM_TOKEN">com.ajit123jain.pregbuddy.fcm_token</string>
+    
 </resources>
